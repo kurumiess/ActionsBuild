@@ -15,6 +15,7 @@ on:
           - "XIAOMI-4A_100M"
           - "XIAOMI-4A_GIGABit"
           - "XIAOMI-CR660X"
+          - "REDMI-ac2100"
       repo_branch:
         type: choice
         description: '版本分支'
