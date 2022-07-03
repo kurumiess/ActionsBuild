@@ -32,7 +32,7 @@ on:
         - "false"
       config_file:
         description: 'config 文件名称(.config)'
-        default: 'immortalwrt.conf'
+        default: 'immortalwrt.feeds'
       files_path:
         type: choice
         description: '导入补丁目录(files目录)'
@@ -74,7 +74,7 @@ env:
   
   REPO_BRANCH: ${{ github.event.inputs.repo_branch }}
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
-  FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/immortalwrt.conf'
+  FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/immortalwrt.feeds'
   REPLACE_FEEDS: ${{ github.event.inputs.feeds_file }}
   LOAD_FILES: ${{ github.event.inputs.files_path }}
   FILES_PATH: '${{ github.event.inputs.resource_directory }}/files'
