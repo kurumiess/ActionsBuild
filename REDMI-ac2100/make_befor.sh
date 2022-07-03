@@ -9,11 +9,20 @@ cp /usr/bin/upx /workdir/openwrt/staging_dir/host/bin/
 cp /usr/bin/upx-ucl /workdir/openwrt/staging_dir/host/bin/
 
 ls
-#修改后台IP
-sed -i 's/192.168.1.1/192.168.2.1/g' package/base-files/files/bin/config_generate
-#修改默认主题(lede暂不需要)
-#cd ./package/
-#git clone https://github.com/jerrykuku/luci-theme-argon.git
-#cd ../
-#sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile
 
+#修改登录IP
+sed -i 's/192.168.1.1/192.168.3.1/g' package/base-files/files/bin/config_generate
+
+#修改主机名
+#sed -i 's/OpenWrt/Xiaomi-Router/g' package/base-files/files/bin/config_generate
+sed -i 's/ImmortalWrt/Redmi-Router/g' package/base-files/files/bin/config_generate
+
+#修改型号显示
+# sed -i 's/Xiaomi Redmi Router AC2100/Redmi AC2100/g' target/linux/ramips/dts/mt7621_xiaomi_redmi-router-ac2100.dts
+# sed -i 's/Xiaomi Mi Router AC2100/Xiaomi AC2100/g' target/linux/ramips/dts/mt7621_xiaomi_mi-router-ac2100.dts
+
+#修改登录密码为password
+sed -i '/root/croot:$1$u4rpvVlw$oCaTlWcgSII4PSZQMXL9c.:19150:0:99999:7:::' package/base-files/files/etc/shadow
+
+# 修改默认主题 argon
+# sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci*/Makefile
