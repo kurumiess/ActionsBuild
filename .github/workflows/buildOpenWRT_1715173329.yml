@@ -1,5 +1,5 @@
 ####################################
-#  update for 2022/07/03 00:24:28  #
+#  update for 2022/07/04 00:26:00  #
 ####################################
 name: 编译固件_1715173329-immortalwrt
 
@@ -12,6 +12,7 @@ on:
         description: '路由器资源目录'
         options:
           - "P2W_R619AC-128M"
+          - "REDMI-ac2100"
           - "XIAOMI-4A_100M"
           - "XIAOMI-4A_GIGABit"
           - "XIAOMI-CR660X"
