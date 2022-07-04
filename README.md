@@ -1,3 +1,4 @@
+**说明** | [教程](https://github.com/danshui-git/shuoming)
 # Actions功能自动编译OpenWRT固件
 
 ## 简介
