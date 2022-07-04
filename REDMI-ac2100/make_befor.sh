@@ -32,9 +32,7 @@ cat >"$CLEAR_PATH" <<-EOF
 packages
 config.buildinfo
 feeds.buildinfo
-openwrt-x86-64-generic-kernel.bin
-openwrt-x86-64-generic.manifest
-openwrt-x86-64-generic-squashfs-rootfs.img.gz
-sha256sums
-version.buildinfo
+immortalwrt-ramips-mt7621-xiaomi_redmi-router-ac2100.manifest
+immortalwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-kernel1.bin
+immortalwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-rootfs0.bin
 EOF
