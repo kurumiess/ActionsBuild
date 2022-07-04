@@ -27,12 +27,3 @@ sed -i '/root/croot:$1$u4rpvVlw$oCaTlWcgSII4PSZQMXL9c.:19150:0:99999:7:::' packa
 # 修改默认主题 argon
 # sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci*/Makefile
 
-# 整理固件包时候,删除您不想要的固件或者文件,让它不需要上传到Actions空间(根据编译机型变化,自行调整删除名称)
-cat >"$CLEAR_PATH" <<-EOF
-packages
-config.buildinfo
-feeds.buildinfo
-immortalwrt-ramips-mt7621-xiaomi_redmi-router-ac2100.manifest
-immortalwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-kernel1.bin
-immortalwrt-ramips-mt7621-xiaomi_redmi-router-ac2100-squashfs-rootfs0.bin
-EOF
