@@ -171,6 +171,7 @@ jobs:
       run: |
         chmod +x $BEFOR_PATCH
         cd openwrt
+        ls
         $GITHUB_WORKSPACE/$BEFOR_PATCH
     
     - name: 下载编译所需
