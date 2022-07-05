@@ -41,7 +41,7 @@ on:
         - "false"
       openwrt_patch:
         type: choice
-        description: '执行仓库脚本(openwrt_patch.sh)'
+        description: '执行仓库脚本(make_patch.sh)'
         options:
         - "true"
         - "false"
@@ -79,7 +79,7 @@ env:
   LOAD_FILES: ${{ github.event.inputs.files_path }}
   FILES_PATH: '${{ github.event.inputs.resource_directory }}/files'
   RUN_OPENWRTPATCH: ${{ github.event.inputs.openwrt_patch }}
-  OPENWRT_PATCH: '${{ github.event.inputs.resource_directory }}/openwrt_patch.sh'
+  OPENWRT_PATCH: '${{ github.event.inputs.resource_directory }}/make_patch.sh'
   RUN_BEFORPATCH: ${{ github.event.inputs.befor_patch }}
   BEFOR_PATCH: '${{ github.event.inputs.resource_directory }}/make_befor.sh'
   RUN_AFTERPATCH: ${{ github.event.inputs.after_patch }}
