@@ -142,8 +142,7 @@ jobs:
       run: |
         [ -e $FEEDS_FILE ] && rm -f openwrt/feeds.conf.default
         [ -e $FEEDS_FILE ] && mv $FEEDS_FILE openwrt/feeds.conf.default
-    
-      
+        
     - name: 导入补丁目录
       if: env.LOAD_FILES == 'true' && steps.check.outputs.files == 'success'
       run: mv $FILES_PATH openwrt/files
