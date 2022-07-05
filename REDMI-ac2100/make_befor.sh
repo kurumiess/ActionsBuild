@@ -31,5 +31,6 @@ sed -i '/root/croot:$1$u4rpvVlw$oCaTlWcgSII4PSZQMXL9c.:19150:0:99999:7:::' packa
 rm -rf feeds/luci/applications/luci-app-filetransfer/
 
 # 调整文件助手菜单
+sed -i 's/admin\/nas/admin\/system/g' feeds/luci/applications/luci-app-fileassistant/htdocs/luci-static/resources/fileassistant/fb.js
 sed -i 's/nas/system/g' feeds/luci/applications/luci-app-fileassistant/luasrc/controller/*.lua
 sed -i 's/nas/system/g' feeds/luci/applications/luci-app-fileassistant/luasrc/view/*.htm
