@@ -95,7 +95,7 @@ jobs:
     - name: 检出仓库数据
       uses: actions/checkout@main
 
-    - name: 初始化编译环境
+    - name: 初始编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
         #非交互式环境
@@ -116,7 +116,7 @@ jobs:
          echo -e "UserName: $(whoami) \n"
          echo -e "SystemInfo: \n$(lsb_release  -a 2>&1 | grep -vi 'No LSB') \n"
          
-    - name: 拉取OpenWRT仓库
+    - name: 拉取源码仓库
       working-directory: /workdir
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
@@ -165,7 +165,7 @@ jobs:
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cat openwrt/.config
         
-    - name: 执行编译前脚本
+    - name: 执行编译脚本(前)
       if: env.RUN_BEFORPATCH == 'true' && steps.check.outputs.befor == 'success'
       run: |
         chmod +x $BEFOR_PATCH
@@ -173,7 +173,7 @@ jobs:
         ls
         $GITHUB_WORKSPACE/$BEFOR_PATCH
     
-    - name: 下载编译所需
+    - name: 下载编译 dl 库
       id: makedownload
       run: |
         cd openwrt
@@ -195,7 +195,7 @@ jobs:
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
     
-    - name: 执行编译后脚本
+    - name: 执行编译脚本(后)
       if: env.RUN_AFTERPATCH == 'true' && steps.check.outputs.after == 'success'
       run: |
         chmod +x $AFTER_PATCH
@@ -212,14 +212,14 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
         
-    - name: 上传固件
+    - name: 上传固件到artifact
       uses: actions/upload-artifact@main
       if: env.UPLOAD_ACTIONSRUNS == 'true' && steps.organize.outputs.status == 'success'
       with:
         name: OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
     
-    - name: 清理ActionsRuns旧数据
+    - name: 清理运行旧数据
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
@@ -249,7 +249,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 2
+        keep_latest: 5
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
