@@ -201,7 +201,6 @@
        
  这一段代码即可
 
-![image](https://user-images.githubusercontent.com/35430449/152690539-0f5a98b3-f791-4ae8-bde5-84532c36829f.png)
 
 ### 关于UpdateActionsData.sh脚本
 
