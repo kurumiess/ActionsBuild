@@ -207,16 +207,3 @@
 
   **此脚本为更新yml文件的脚本代码，如果没有特殊需要，一般无需修改**
 
-
-
-## 捐赠
-
-**如果你觉得此项目对你有帮助，可以捐助我们，以鼓励项目能持续发展，更加完善**
-
-微信：
-
-![image](https://user-images.githubusercontent.com/35430449/152690757-9e680080-07a6-41fd-9d5a-302652811b1d.png)
-
-支付宝：
-
-![image](https://user-images.githubusercontent.com/35430449/152690751-6e06c20a-5ac5-4736-a7e0-d3b13258b316.png)
