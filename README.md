@@ -1,4 +1,4 @@
-**说明** | [教程](https://github.com/danshui-git/shuoming)
+**说明** | [教程](https://github.com/kurumiess/OP_README)
 # Actions功能自动编译OpenWRT固件
 
 ## 简介
