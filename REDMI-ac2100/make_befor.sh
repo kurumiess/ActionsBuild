@@ -27,6 +27,9 @@ sed -i '/root/croot:$1$u4rpvVlw$oCaTlWcgSII4PSZQMXL9c.:19150:0:99999:7:::' packa
 # 修改默认主题 argon
 # sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci*/Makefile
 
+# 禁用miniupnpd ipv6
+sed -i 's/config ipv6_disable 0/config ipv6_disable 1/g' feeds/packages/net/miniupnpd/files/miniupnpd.init
+
 # 删除文件传输
 rm -rf feeds/luci/applications/luci-app-filetransfer/
 
