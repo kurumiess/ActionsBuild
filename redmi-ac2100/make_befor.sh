@@ -30,6 +30,11 @@ sed -i '/root/croot:$1$u4rpvVlw$oCaTlWcgSII4PSZQMXL9c.:19150:0:99999:7:::' packa
 # 禁用miniupnpd ipv6
 sed -i 's/config ipv6_disable 0/config ipv6_disable 1/g' feeds/packages/net/miniupnpd/files/miniupnpd.init
 
+# 配置turboacc
+sed -i 's/option sw_flow '1'/option sw_flow '0'/g' feeds/luci/applications/luci-app-turboacc/root/etc/config/turboacc
+sed -i 's/option hw_flow '1'/option hw_flow '0'/g' feeds/luci/applications/luci-app-turboacc/root/etc/config/turboacc
+sed -i 's/option bbr_cca '0'/option bbr_cca '1'/g' feeds/luci/applications/luci-app-turboacc/root/etc/config/turboacc
+
 # 删除文件传输
 rm -rf feeds/luci/applications/luci-app-filetransfer/
 
