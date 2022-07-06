@@ -71,7 +71,7 @@ env:
   Resoure_DIR: ${{ github.event.inputs.resource_directory }}
   
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  
+  RELEASE_TAG: immortalwrt
   REPO_BRANCH: ${{ github.event.inputs.repo_branch }}
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
   FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/immortalwrt.feeds'
@@ -230,11 +230,11 @@ jobs:
       id: releasetag
       if: env.UPLOAD_RELEASE == 'true' && steps.makefirmware.outputs.status == 'success' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M(immortalwrt${{ env.DEVICE_NAME }})")"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M($RELEASE_TAG${{ env.DEVICE_NAME }})")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo "- ⭐️个人精简版：SSR, KMS, UPNP, TURBO ACC" >> release.txt
+        echo "- ⭐️个人精简 $RELEASE_TAG：SSR, KMS, UPNP, TURBO ACC" >> release.txt
         echo "- 🔥默认IP：192.168.3.1 默认密码：password" >> release.txt
         echo "- 源码:【查看[➦$REPO_URL]($REPO_URL)更新记录】" >> release.txt
         echo "- 编译时间：$(date +"%Y.%m.%d-%H%M")" >> release.txt
