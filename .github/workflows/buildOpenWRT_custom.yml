@@ -1,5 +1,5 @@
 ####################################
-#  update for 2022/07/06 00:33:06  #
+#  update for 2022/07/07 00:31:03  #
 ####################################
 
 name: 编译固件_自定义仓库
@@ -13,10 +13,10 @@ on:
         description: '路由器资源目录'
         options:
           - "P2W_R619AC-128M"
-          - "redmi-ac2100"
           - "XIAOMI-4A_100M"
           - "XIAOMI-4A_GIGABit"
           - "XIAOMI-CR660X"
+          - "redmi-ac2100"
       repo_url:
         description: '仓库地址'
         default: 'https://github.com/openwrt/openwrt'

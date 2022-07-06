@@ -1,5 +1,5 @@
 ####################################
-#  update for 2022/07/06 00:34:15  #
+#  update for 2022/07/07 00:32:03  #
 ####################################
 name: 编译固件_openwrt
 
@@ -12,10 +12,10 @@ on:
         description: '路由器资源目录'
         options:
           - "P2W_R619AC-128M"
-          - "redmi-ac2100"
           - "XIAOMI-4A_100M"
           - "XIAOMI-4A_GIGABit"
           - "XIAOMI-CR660X"
+          - "redmi-ac2100"
       repo_branch:
         type: choice
         description: '版本分支'
