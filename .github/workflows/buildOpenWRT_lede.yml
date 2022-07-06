@@ -210,14 +210,14 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
-    - name: 上传固件
+    - name: 上传固件到artifact
       uses: actions/upload-artifact@main
       if: env.UPLOAD_ACTIONSRUNS == 'true' && steps.organize.outputs.status == 'success'
       with:
         name: OpenWrt_lede${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
-    - name: 清理ActionsRuns旧数据
+    - name: 清理运行旧数据
       uses: GitRML/delete-workflow-runs@main
       with:
         retain_days: 1
