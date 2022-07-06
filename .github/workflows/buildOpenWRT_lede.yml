@@ -214,7 +214,7 @@ jobs:
       uses: actions/upload-artifact@main
       if: env.UPLOAD_ACTIONSRUNS == 'true' && steps.organize.outputs.status == 'success'
       with:
-        name: lede_OpenWrt_firmware${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: OpenWrt_lede${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
         path: ${{ env.FIRMWARE }}
 
     - name: 清理ActionsRuns旧数据
