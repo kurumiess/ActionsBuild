@@ -39,19 +39,19 @@ on:
         - "false"
       openwrt_patch:
         type: choice
-        description: '执行仓库脚本(openwrt_patch.sh)'
+        description: '执行仓库脚本(build_patch.sh)'
         options:
         - "true"
         - "false"
       befor_patch:
         type: choice
-        description: '执行编译前脚本(make_befor.sh)'
+        description: '执行编译前脚本(lede_befor.sh)'
         options:
         - "true"
         - "false"
       after_patch:
         type: choice
-        description: '执行编译后脚本(make_after.sh)'
+        description: '执行编译后脚本(build_after.sh)'
         options:
         - "true"
         - "false"
@@ -69,8 +69,8 @@ env:
   Resoure_DIR: ${{ github.event.inputs.resource_directory }}
   
   REPO_URL: https://github.com/coolsnowwolf/lede
-  
   REPO_BRANCH: ${{ github.event.inputs.repo_branch }}
+  RELEASE_TAG: lede
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
   FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/lede.feeds'
   REPLACE_FEEDS: ${{ github.event.inputs.feeds_file }}
@@ -81,7 +81,7 @@ env:
   RUN_BEFORPATCH: ${{ github.event.inputs.befor_patch }}
   BEFOR_PATCH: '${{ github.event.inputs.resource_directory }}/lede_befor.sh'
   RUN_AFTERPATCH: ${{ github.event.inputs.after_patch }}
-  AFTER_PATCH: '${{ github.event.inputs.resource_directory }}/build_after.sh.sh'
+  AFTER_PATCH: '${{ github.event.inputs.resource_directory }}/build_after.sh'
   UPLOAD_RELEASE: ${{ github.event.inputs.upload_release }}
   
   
@@ -93,7 +93,7 @@ jobs:
     - name: 检出仓库数据
       uses: actions/checkout@main
 
-    - name: 初始化编译环境
+    - name: 初始编译环境
       env:
         DEBIAN_FRONTEND: noninteractive
         #非交互式环境
@@ -114,7 +114,7 @@ jobs:
          echo -e "UserName: $(whoami) \n"
          echo -e "SystemInfo: \n$(lsb_release  -a 2>&1 | grep -vi 'No LSB') \n"
          
-    - name: 拉取OpenWRT仓库
+    - name: 拉取源码仓库
       working-directory: /workdir
       run: |
         git clone $REPO_URL -b $REPO_BRANCH openwrt
@@ -128,6 +128,12 @@ jobs:
         [ -e $OPENWRT_PATCH ] && echo "::set-output name=patch::success"
         [ -e $BEFOR_PATCH ] && echo "::set-output name=befor::success"
         [ -e $AFTER_PATCH ] && echo "::set-output name=after::success"
+        echo "配置文件路径"
+        [ -e $FEEDS_FILE ] && echo $FEEDS_FILE
+        [ -e $FILES_PATH ] && echo $FILES_PATH
+        [ -e $OPENWRT_PATCH ] && echo $OPENWRT_PATCH
+        [ -e $BEFOR_PATCH ] && echo $BEFOR_PATCH
+        [ -e $AFTER_PATCH ] && echo $AFTER_PATCH
     
     - name: 替换软件源配置
       if: env.REPLACE_FEEDS == 'true' && steps.check.outputs.feeds == 'success'
@@ -135,7 +141,6 @@ jobs:
         [ -e $FEEDS_FILE ] && rm -f openwrt/feeds.conf.default
         [ -e $FEEDS_FILE ] && mv $FEEDS_FILE openwrt/feeds.conf.default
     
-      
     - name: 导入补丁目录
       if: env.LOAD_FILES == 'true' && steps.check.outputs.files == 'success'
       run: mv $FILES_PATH openwrt/files
@@ -153,21 +158,19 @@ jobs:
         ./scripts/feeds update -a && ./scripts/feeds install -a
         ./scripts/feeds update -a && ./scripts/feeds install -a
         
-        
     - name: 加载固件配置
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         cat openwrt/.config
         
-        
-    - name: 执行编译前脚本
+    - name: 执行编译脚本(前)
       if: env.RUN_BEFORPATCH == 'true' && steps.check.outputs.befor == 'success'
       run: |
         chmod +x $BEFOR_PATCH
         cd openwrt
         $GITHUB_WORKSPACE/$BEFOR_PATCH
         
-    - name: 下载编译所需
+    - name: 下载编译 dl 库
       id: makedownload
       run: |
         cd openwrt
@@ -175,7 +178,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-        
         
     - name: 编译固件
       id: makefirmware
@@ -190,7 +192,7 @@ jobs:
         [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
         echo "FILE_DATE=_$(date +"%Y%m%d%H%M")" >> $GITHUB_ENV
     
-    - name: 执行编译后脚本
+    - name: 执行编译脚本(后)
       if: env.RUN_AFTERPATCH == 'true' && steps.check.outputs.after == 'success'
       run: |
         chmod +x $AFTER_PATCH
@@ -202,6 +204,7 @@ jobs:
       if: steps.makefirmware.outputs.status == 'success'
       run: |
         cd openwrt/bin/targets/*/*
+        rm -rf packages feeds.buildinfo sha256sums version.buildinfo
         cp ../../../../.config ./build.config
         cp ../../../../feeds.conf.default ./feeds.conf.default
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
@@ -224,10 +227,14 @@ jobs:
       id: releasetag
       if: env.UPLOAD_RELEASE == 'true' && steps.makefirmware.outputs.status == 'success' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M")"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M_$RELEASE_TAG${{ env.DEVICE_NAME }}")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
+        echo "- ⭐️个人精简 $RELEASE_TAG：SSR, KMS, UPNP, TURBO ACC" >> release.txt
+        echo "- 🔥默认IP：192.168.3.1 默认密码：password" >> release.txt
+        echo "- 源码:【查看[➦$REPO_URL]($REPO_URL)更新记录】" >> release.txt
+        echo "- 编译时间：$(date +"%Y.%m.%d-%H%M")" >> release.txt
         echo "::set-output name=status::success"
         
     - name: 上传固件到Release
@@ -244,7 +251,7 @@ jobs:
       uses: dev-drprasad/delete-older-releases@v0.1.0
       if: env.UPLOAD_RELEASE == 'true' && !cancelled()
       with:
-        keep_latest: 2
+        keep_latest: 5
         delete_tags: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
