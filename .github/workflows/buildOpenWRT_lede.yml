@@ -70,7 +70,7 @@ env:
   
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: ${{ github.event.inputs.repo_branch }}
-  RELEASE_TAG: lede
+  #RELEASE_TAG: lede
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
   FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/lede.feeds'
   REPLACE_FEEDS: ${{ github.event.inputs.feeds_file }}
@@ -227,11 +227,11 @@ jobs:
       id: releasetag
       if: env.UPLOAD_RELEASE == 'true' && steps.makefirmware.outputs.status == 'success' && !cancelled()
       run: |
-        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M-(${{ env.RELEASE_TAG }}${{ env.DEVICE_NAME }})")"
+        echo "::set-output name=release_tag::$(date +"%Y.%m.%d-%H%M-(${{ env.DEVICE_NAME }})")"
         touch release.txt
         [ $UPLOAD_COWTRANSFER = true ] && echo "🔗 [Cowtransfer](${{ steps.cowtransfer.outputs.url }})" >> release.txt
         [ $UPLOAD_WETRANSFER = true ] && echo "🔗 [WeTransfer](${{ steps.wetransfer.outputs.url }})" >> release.txt
-        echo "- ⭐️个人精简 $RELEASE_TAG：SSR, KMS, UPNP, TURBO ACC" >> release.txt
+        echo "- ⭐️个人精简：SSR, KMS, UPNP, TURBO ACC" >> release.txt
         echo "- 🔥默认IP：192.168.3.1 默认密码：password" >> release.txt
         echo "- 源码:【查看[➦$REPO_URL]($REPO_URL)更新记录】" >> release.txt
         echo "- 编译时间：$(date +"%Y.%m.%d-%H%M")" >> release.txt
