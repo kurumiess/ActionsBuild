@@ -1,5 +1,5 @@
 ####################################
-#  update for 2022/07/07 00:31:03  #
+#  update for 2022/07/08 00:33:31  #
 ####################################
 name: 编译固件_Tianling-immortalwrt
 
@@ -20,8 +20,6 @@ on:
         type: choice
         description: '版本分支'
         options:
-          - "openwrt-21.02"
-          - "openwrt-18.06-meson"
           - "1806-glibc"
           - "1806-ipq806x-nss"
           - "1806-k44"
@@ -43,12 +41,14 @@ on:
           - "1806-ubus"
           - "1907-ipq806x-nss"
           - "1907-ossl"
+          - "dpdk"
           - "master-ax3000"
           - "master-ax3000-5.15"
           - "master-ax3000-5.15-wifioffload"
           - "master-ax3000-old"
           - "master-ax3000-wifioffload"
-          - "dpdk"
+          - "openwrt-18.06-meson"
+          - "openwrt-21.02"
           - "qca8k"
       feeds_file:
         type: choice
