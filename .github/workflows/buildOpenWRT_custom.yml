@@ -77,14 +77,14 @@ env:
   RELEASE_TAG: ${{ github.event.inputs.release_tag }}
   
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
-  FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/feeds.conf.default'
+  FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/custom.feeds'
   REPLACE_FEEDS: ${{ github.event.inputs.feeds_file }}
   LOAD_FILES: ${{ github.event.inputs.files_path }}
   FILES_PATH: '${{ github.event.inputs.resource_directory }}/files'
   RUN_OPENWRTPATCH: ${{ github.event.inputs.openwrt_patch }}
   OPENWRT_PATCH: '${{ github.event.inputs.resource_directory }}/build_patch.sh'
   RUN_BEFORPATCH: ${{ github.event.inputs.befor_patch }}
-  BEFOR_PATCH: '${{ github.event.inputs.resource_directory }}/make_befor.sh'
+  BEFOR_PATCH: '${{ github.event.inputs.resource_directory }}/custom_befor.sh'
   RUN_AFTERPATCH: ${{ github.event.inputs.after_patch }}
   AFTER_PATCH: '${{ github.event.inputs.resource_directory }}/build_after.sh'
   UPLOAD_RELEASE: ${{ github.event.inputs.upload_release }}
