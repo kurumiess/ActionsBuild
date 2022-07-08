@@ -1,5 +1,5 @@
 ####################################
-#  update for 2022/07/08 00:34:03  #
+#  update for 2022/07/08 10:05:21  #
 ####################################
 name: 编译固件_immortalwrt
 
@@ -24,9 +24,6 @@ on:
           - "openwrt-18.06"
           - "openwrt-18.06-k5.4"
           - "openwrt-21.02"
-      release_tag:
-        description: '指定标签名'
-        default: 'immortalwrt'
       feeds_file:
         type: choice
         description: '替换软件源配置(feeds.conf.default)'

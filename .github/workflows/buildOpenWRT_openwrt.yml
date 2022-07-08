@@ -1,5 +1,5 @@
 ####################################
-#  update for 2022/07/08 00:34:33  #
+#  update for 2022/07/08 10:05:57  #
 ####################################
 name: 编译固件_openwrt
 
@@ -26,9 +26,6 @@ on:
           - "openwrt-19.07"
           - "openwrt-21.02"
           - "openwrt-22.03"
-      release_tag:
-        description: '指定标签名'
-        default: 'openwrt'
       feeds_file:
         type: choice
         description: '替换软件源配置(feeds.conf.default)'
