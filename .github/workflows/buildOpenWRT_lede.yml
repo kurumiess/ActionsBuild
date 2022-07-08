@@ -70,8 +70,7 @@ env:
   
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: ${{ github.event.inputs.repo_branch }}
-  RELEASE_TAG: ${{ github.event.inputs.release_tag }}
-  
+  RELEASE_TAG: lede
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
   FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/lede.feeds'
   REPLACE_FEEDS: ${{ github.event.inputs.feeds_file }}
