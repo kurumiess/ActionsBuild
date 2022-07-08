@@ -72,8 +72,7 @@ env:
   
   REPO_URL: https://github.com/immortalwrt/immortalwrt
   REPO_BRANCH: ${{ github.event.inputs.repo_branch }}
-  RELEASE_TAG: ${{ github.event.inputs.release_tag }}
-  
+  RELEASE_TAG: immortalwrt
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
   FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/immortalwrt.feeds'
   REPLACE_FEEDS: ${{ github.event.inputs.feeds_file }}
