@@ -22,6 +22,9 @@ on:
         description: '版本分支'
         options:
           - "master"
+      release_tag:
+        description: '指定标签名'
+        default: 'lede'
       feeds_file:
         type: choice
         description: '替换软件源配置(feeds.conf.default)'
