@@ -23,6 +23,9 @@ on:
       repo_branch:
         description: '版本分支'
         default: 'v21.02.1'
+      release_tag:
+        description: '指定标签名'
+        default: 'openwrt'
       feeds_file:
         type: choice
         description: '替换软件源配置(feeds.conf.default)'
@@ -70,8 +73,9 @@ env:
   Resoure_DIR: ${{ github.event.inputs.resource_directory }}
   
   REPO_URL: ${{ github.event.inputs.repo_url }}
-  
   REPO_BRANCH: ${{ github.event.inputs.repo_branch }}
+  RELEASE_TAG: ${{ github.event.inputs.release_tag }}
+  
   CONFIG_FILE: '${{ github.event.inputs.resource_directory }}/${{ github.event.inputs.config_file }}'
   FEEDS_FILE: '${{ github.event.inputs.resource_directory }}/feeds.conf.default'
   REPLACE_FEEDS: ${{ github.event.inputs.feeds_file }}
