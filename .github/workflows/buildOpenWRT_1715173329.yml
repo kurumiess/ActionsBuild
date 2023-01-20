@@ -1,5 +1,5 @@
 ####################################
-#  update for 2023/01/20 00:27:12  #
+#  update for 2023/01/21 00:24:08  #
 ####################################
 name: 编译固件_Tianling
 
@@ -46,8 +46,8 @@ on:
           - "master-ax3000-old"
           - "master-ax3000-wifioffload"
           - "master-ipq807x-5.15"
+          - "master-ipq807x-5.15-nss"
           - "master-ipq807x-6.1"
-          - "master-ipq807x-mf269"
           - "master-ipq807x-stock"
           - "master-rockchip-519"
           - "master-rockchip-6.1"
