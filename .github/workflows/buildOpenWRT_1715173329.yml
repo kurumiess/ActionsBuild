@@ -1,5 +1,5 @@
 ####################################
-#  update for 2023/02/17 00:25:27  #
+#  update for 2023/02/18 00:24:16  #
 ####################################
 name: 编译固件_Tianling
 
@@ -53,8 +53,6 @@ on:
           - "master-rockchip-6.1"
           - "master-rockchip-motorcomm"
           - "master-rockchip-r1plts"
-          - "master-rockchip-r5s"
-          - "master-rockchip-r68s"
           - "master-rockchip-rk3588"
           - "master-rockchip-uboot"
       feeds_file:
