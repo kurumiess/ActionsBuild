@@ -1,5 +1,5 @@
 ####################################
-#  update for 2023/10/27 00:19:34  #
+#  update for 2023/10/28 00:20:10  #
 ####################################
 name: 编译固件_Tianling
 
@@ -44,7 +44,6 @@ on:
           - "2102-nvmem-bp"
           - "2102-ramips-mt76"
           - "2102-rtw88"
-          - "bpi-r3-mini"
           - "master"
           - "master-ax3000"
           - "master-ax3000-5.15"
@@ -59,6 +58,7 @@ on:
           - "master-ipq807x-nss"
           - "master-ipq807x-stock"
           - "master-mediatek-cmcca10"
+          - "master-mediatek-som7981"
           - "master-mt7981-t7"
           - "master-rockchip-519"
           - "master-rockchip-6.1"
