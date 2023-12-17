@@ -1,5 +1,5 @@
 ####################################
-#  update for 2023/12/17 00:19:05  #
+#  update for 2023/12/18 00:19:59  #
 ####################################
 name: 编译固件_Tianling
 
@@ -57,6 +57,7 @@ on:
           - "master-ipq807x-stock"
           - "master-mediatek-som7981"
           - "master-rockchip-519"
+          - "master-rockchip-adc"
           - "master-rockchip-mdio"
           - "master-rockchip-r1plts"
           - "master-rockchip-rk3588-rkuboot"
