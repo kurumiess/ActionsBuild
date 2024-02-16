@@ -1,5 +1,5 @@
 ####################################
-#  update for 2024/02/16 00:19:06  #
+#  update for 2024/02/17 00:18:58  #
 ####################################
 name: 编译固件_Tianling
 
@@ -63,7 +63,6 @@ on:
           - "master-rockchip-r1plts"
           - "master-rockchip-rk3588-display"
           - "master-rockchip-rk3588-rkuboot"
-          - "master-rockchip-sv901"
           - "master-rockchip-uboot"
           - "master-sunxi-zero3"
       feeds_file:
