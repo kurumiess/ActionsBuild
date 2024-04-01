@@ -1,5 +1,5 @@
 ####################################
-#  update for 2024/04/01 00:17:37  #
+#  update for 2024/04/02 00:19:29  #
 ####################################
 name: 编译固件_Tianling
 
@@ -56,7 +56,6 @@ on:
           - "master-ipq807x-nss"
           - "master-ipq807x-stock"
           - "master-kernel-mtk-t7xx"
-          - "master-mediatek-som7981"
           - "master-rockchip-519"
           - "master-rockchip-adc"
           - "master-rockchip-mdio"
