@@ -1,5 +1,5 @@
 ####################################
-#  update for 2024/09/06 00:23:39  #
+#  update for 2024/09/07 00:24:29  #
 ####################################
 name: 编译固件_Tianling
 
@@ -68,6 +68,7 @@ on:
           - "master-rockchip-scmi"
           - "master-rockchip-sv901"
           - "master-rockchip-uboot"
+          - "master-sunxi-zero3"
       feeds_file:
         type: choice
         description: '替换软件源配置(feeds.conf.default)'
