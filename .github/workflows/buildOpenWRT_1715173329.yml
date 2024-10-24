@@ -1,5 +1,5 @@
 ####################################
-#  update for 2024/10/24 00:24:46  #
+#  update for 2024/10/25 00:23:21  #
 ####################################
 name: 编译固件_Tianling
 
@@ -60,6 +60,7 @@ on:
           - "master-mediatek-rax3000m"
           - "master-r8125"
           - "master-rockchip-519"
+          - "master-rockchip-a2402"
           - "master-rockchip-adc"
           - "master-rockchip-mdio"
           - "master-rockchip-r1plts"
